@@ -53,6 +53,8 @@ jobs:
         echo "output from build step '${{ needs.publish-image.outputs.image }}'"
         echo "from env ${{ vars.ENV_VARIABLE }}"
         echo "from env ${{ secrets.ENV_SECRET_VARIABLE }}"
+        echo ${{ github.event_name }}
+        echo ${{ github.event.action }}
 
   deploy-prod:
     runs-on: ubuntu-latest
