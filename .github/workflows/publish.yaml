@@ -44,27 +44,26 @@ jobs:
   deploy-staging:
     runs-on: ubuntu-latest
     needs: publish-image
+    environment: staging
     steps:
     - uses: actions/checkout@v3
 
     - name: Login to PROD
       run: |
-        cat README.md
         echo "output from build step '${{ needs.publish-image.outputs.image }}'"
-        echo ${{ needs.publish-image.outputs.image }} >> tmp.txt
-        echo ${{ needs.publish-image.outputs.image }} >> tmp.txt
-        cat tmp.txt
+        echo "from env ${{ vars.ENV_VARIABLE }}"
+        echo "from env ${{ vars.ENV_SECRET_VARIABLE }}"
 
   deploy-prod:
     runs-on: ubuntu-latest
     needs: publish-image
+    environment: production
     if: github.event_name == 'tags'
     steps:
     - uses: actions/checkout@v3
 
     - name: Login to PROD
       run: |
-        cat README.md
-        echo "output from build step '${{ steps.build-image.outputs.image }}'"
-        echo ${{ steps.build-image.outputs.image }} >> tmp.txt
-        cat tmp.txt
+        echo "output from build step '${{ needs.publish-image.outputs.image }}'"
+        echo "from env ${{ vars.ENV_VARIABLE }}"
+        echo "from env ${{ vars.ENV_SECRET_VARIABLE }}"
