@@ -39,7 +39,7 @@ jobs:
         echo docker push --all-tags $IMAGE_ID
         echo "image=$IMAGE_ID:$VERSION" >> $GITHUB_OUTPUT
     outputs:
-        image: ${{ steps.build-image.image }}
+        image: ${{ steps.build-image.outputs.image }}
 
   deploy-staging:
     runs-on: ubuntu-latest
