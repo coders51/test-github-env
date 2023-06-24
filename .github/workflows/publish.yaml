@@ -6,8 +6,7 @@ on:
     tags: ['v*']
 
 env:
-  IMAGE_NAME: image-name
-  IMAGE_ID: ghcr.io/coders51/$IMAGE_NAME
+  IMAGE_ID: ghcr.io/coders51/image-name
 
 jobs:
   publish-image:
@@ -40,3 +39,20 @@ jobs:
         echo docker push --all-tags $IMAGE_ID
         echo "image=$IMAGE_ID:$VERSION" >> $GITHUB_OUTPUT
 
+  deploy-staging:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Login to PROD
+      run: |
+        echo "output from build step ${{ steps.build-image.outputs.image }}"
+
+  deploy-prod:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Login to PROD
+      run: |
+        echo "output from build step ${{ steps.build-image.outputs.image }}"
