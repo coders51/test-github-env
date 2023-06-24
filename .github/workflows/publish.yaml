@@ -47,8 +47,10 @@ jobs:
 
     - name: Login to PROD
       run: |
+        cat README.md
         echo "output from build step '${{ steps.build-image.outputs.image }}'"
-        echo ${{ steps.build-image.outputs.image }}
+        echo ${{ steps.build-image.outputs.image }} >> tmp.txt
+        cat tmp.txt
 
   deploy-prod:
     runs-on: ubuntu-latest
@@ -59,4 +61,7 @@ jobs:
 
     - name: Login to PROD
       run: |
-        echo "output from build step ${{ steps.build-image.outputs.image }}"
+        cat README.md
+        echo "output from build step '${{ steps.build-image.outputs.image }}'"
+        echo ${{ steps.build-image.outputs.image }} >> tmp.txt
+        cat tmp.txt
