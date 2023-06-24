@@ -3,9 +3,9 @@ name: publish docker image
 on:
   push:
     branches: [main]
-    # tags: ['v*']
-  release:
-    types: [created]
+    tags: ['v*']
+  # release:
+  #   types: [created]
 
 env:
   IMAGE_ID: ghcr.io/coders51/image-name
