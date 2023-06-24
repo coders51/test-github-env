@@ -48,8 +48,9 @@ jobs:
     - name: Login to PROD
       run: |
         cat README.md
-        echo "output from build step '${{ steps.build-image.outputs.image }}'"
-        echo ${{ steps.build-image.outputs.image }} >> tmp.txt
+        echo "output from build step '${{ jobs.publish-image.steps.build-image.outputs.image }}'"
+        echo ${{ jobs.publish-image.steps.build-image.outputs.image }} >> tmp.txt
+        echo ${{ jobs.publish-image.steps.build-image.outputs.image }} >> tmp.txt
         cat tmp.txt
 
   deploy-prod:
