@@ -47,7 +47,8 @@ jobs:
 
     - name: Login to PROD
       run: |
-        echo "output from build step ${{ steps.build-image.outputs.image }}"
+        echo "output from build step '${{ steps.build-image.outputs.image }}'"
+        echo ${{ steps.build-image.outputs.image }}
 
   deploy-prod:
     runs-on: ubuntu-latest
